@@ -45,8 +45,8 @@ class LLMManager:
             "prompt": full_prompt,
             "stream": False,
             "options": {
-                "temperature": 0.3,  # Lower temperature for more consistent responses
-                "num_predict": 150,  # Limit response length
+                "temperature": 0.3,
+                "num_predict": 150,
             }
         }
         
@@ -56,7 +56,6 @@ class LLMManager:
             result = response.json()
             raw_response = result.get("response", "Got it.")
             
-            # Post-process to ensure brevity
             return self._shorten_response(raw_response)
             
         except Exception as e:
@@ -65,6 +64,7 @@ class LLMManager:
     def _shorten_response(self, response: str) -> str:
         """Enforce 1-2 sentence limit"""
         sentences = response.split('. ')
+        return response.replace('**', '').replace('#', '').strip()
         
         # Take only first 2 sentences
         if len(sentences) > 2:

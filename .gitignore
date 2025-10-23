@@ -6,6 +6,8 @@ credentials/
 
 # C extensions
 *.so
+*.swp
+*.db
 
 # Distribution / packaging
 .Python
